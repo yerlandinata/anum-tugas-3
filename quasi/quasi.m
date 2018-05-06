@@ -14,7 +14,7 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*- 
-## @deftypefn {} {@var{a} =} backtrack_armijo (@var{f}, @var{a_init}, @var{x}, @var{p}, @var{b}, @var{t}, @var{g})
+## @deftypefn {} {@var{op} =} quasi (@var{f}, @var{g}, @var{x_init}, @var{line_seach}, @var{b_update}, @var{tol})
 ##
 ## @seealso{}
 ## @end deftypefn
@@ -22,15 +22,22 @@
 ## Author: Yudhistira Erlandinata <yerlandinata@yerlandinata-ideapad700>
 ## Created: 2018-04-29
 
-function [a] = backtrack_armijo (f, a_init, x, p, b, t, g)
-  tol = 1e-12;
-  a = a_init;
-  gt = g';
-  while f(x + a * p) > f(x) + (a * b * (gt * p))
-    # printf("a = %.6e; f(x + ap) = %.6e > f(x) + ab g^T p = %.6e\n", a, f(x + a * p), f(x) + (a * b * (gt * p)) );
-    a = t * a;
-    if a < tol
-      return
-    endif
+function [x, iter_count] = quasi (f, g, x_init, line_search, b_update, tol)
+  iter_count = 0;
+  B = eye(size(x_init)(1));
+  x = x_init;
+  gk = g(x);
+  while f(x) > tol
+    iter_count = iter_count + 1;
+    fx = f(x);
+    p = -B * gk;
+    a = line_search(f, x, gk, p);
+    x1 = x + a * p;
+    dx = x1 - x;
+    gk1 = g(x1);
+    dg = gk1 - gk;
+    B = b_update(B, dx, dg);
+    x = x1;
+    gk = gk1;
   endwhile
 endfunction
