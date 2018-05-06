@@ -22,11 +22,6 @@
 ## Author: Aldi Hilman Ramadhani <sangbijaksana@UGEAR>
 ## Created: 2018-04-29
 
-function [a] = direct_line_search (f, x_init, g)
-  p = -g;
-  a = 1;
-  while f(x_init + a * p) > f (x_init)
-    a = t * a;
-  endwhile
-  x = x_init + a*p;
+function [retval] = generic_line_search (input1, input2)
+
 endfunction
