@@ -28,5 +28,5 @@ function [a] = direct_line_search (f, x_init, g)
   while f(x_init + a * p) > f (x_init)
     a = t * a;
   endwhile
-  x = x_init + a*p;
+
 endfunction

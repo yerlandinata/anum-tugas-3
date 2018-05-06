@@ -22,6 +22,13 @@
 ## Author: Aldi Hilman Ramadhani <sangbijaksana@UGEAR>
 ## Created: 2018-04-29
 
-function [retval] = generic_line_search (input1, input2)
+function [x] = steepest_descent (fun, x_init, )
+  x = x_init;
+
+  while g(x) < tol
+    p = -g(x);
+    alfa = fminsearch(,);
+    x = x+alfa*p;
+  endwhile
 
 endfunction
