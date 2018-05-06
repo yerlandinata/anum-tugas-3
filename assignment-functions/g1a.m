@@ -14,7 +14,7 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*- 
-## @deftypefn {} {@var{y} =} assignment-functions/g1a (@var{x})
+## @deftypefn {} {@var{g} =} assignment-functions/g1a (@var{x})
 ##
 ## @seealso{}
 ## @end deftypefn
@@ -22,6 +22,6 @@
 ## Author: Yudhistira Erlandinata <yerlandinata@yerlandinata-ideapad700>
 ## Created: 2018-04-29
 
-function [y] = g1a (x)
-  y = [x(1) 5*x(1)]';
+function [g] = g1a (x)
+  g = [x(1) 5*x(2)]';
 endfunction
