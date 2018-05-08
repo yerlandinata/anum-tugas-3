@@ -22,11 +22,7 @@
 ## Author: Aldi Hilman Ramadhani <sangbijaksana@UGEAR>
 ## Created: 2018-04-29
 
-function [a] = direct_line_search (f, x_init, g)
-  p = -g;
-  a = 1;
-  while f(x_init + a * p) > f (x_init)
-    a = t * a;
-  endwhile
+function [x] = direct_line_search (fun, x_init)
+  x = fminsearch(fun, x_init);
 
 endfunction
