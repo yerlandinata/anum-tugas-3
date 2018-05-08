@@ -22,13 +22,21 @@
 ## Author: Aldi Hilman Ramadhani <sangbijaksana@UGEAR>
 ## Created: 2018-04-29
 
-function [x] = steepest_descent (fun, x_init, )
+
+function [x, iter_count] = steepest_descent (f, g, x_init, line_search, tol)
+
+  iter_count = 0;
   x = x_init;
 
-  while g(x) < tol
+  while f(x) > tol
+    iter_count = iter_count + 1;
     p = -g(x);
-    alfa = fminsearch(,);
-    x = x+alfa*p;
+
+    f_alfa = @(alfa)f(x+alfa*p);
+    iter_count = iter_count + 1;
+
+    min_alfa = line_search(f_alfa,1);
+    x = x+min_alfa*p;
   endwhile
 
 endfunction
