@@ -14,24 +14,20 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*- 
-## @deftypefn {} {@var{a} =} backtrack_armijo (@var{f}, @var{a_init}, @var{x}, @var{p}, @var{b}, @var{t}, @var{g})
+## @deftypefn {} {@var{is_convergence} =} convergence_check (@var{x})
 ##
 ## @seealso{}
 ## @end deftypefn
 
 ## Author: Yudhistira Erlandinata <yerlandinata@yerlandinata-ideapad700>
-## Created: 2018-04-29
+## Created: 2018-05-08
 
-function [a] = backtrack_armijo (f, a_init, x, p, b, t, g)
-  tol = 1e-12;
-  a = a_init;
-  gt = g';
-  #printf("a = %.6e; f(x + ap) = %.6e > f(x) + ab g^T p = %.6e\n", a, f(x + a * p), f(x) + (a * b * (gt * p)) );
-  while f(x + a * p) > f(x) + (a * b * (gt * p))
-    a = t * a;
-    #printf("a = %.6e; f(x + ap) = %.6e > f(x) + ab g^T p = %.6e\n", a, f(x + a * p), f(x) + (a * b * (gt * p)) );
-    if a < tol
-      return
+function [is_convergence] = convergence_check (x, tol)
+for i = 2:size(x)(1)
+    if abs(x(i) - x(i-1)) > tol
+        is_convergence = false;
+        return;
     endif
-  endwhile
+endfor
+is_convergence = true;
 endfunction
