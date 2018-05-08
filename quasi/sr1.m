@@ -14,7 +14,7 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*- 
-## @deftypefn {} {@var{retval} =} sr1 (@var{input1}, @var{input2})
+## @deftypefn {} {@var{B1} =} sr1 (@var{B}, @var{dx}, @var{dg})
 ##
 ## @seealso{}
 ## @end deftypefn
@@ -24,5 +24,5 @@
 
 function [B1] = sr1 (B, dx, dg)
   z = dx - B * dg;
-  B1 = B + ((z * z')/(z' * dx));
+  B1 = B + ((z * z')/(z' * dg));
 endfunction

@@ -14,24 +14,19 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*- 
-## @deftypefn {} {@var{a} =} backtrack_armijo (@var{f}, @var{a_init}, @var{x}, @var{p}, @var{b}, @var{t}, @var{g})
+## @deftypefn {} {@var{g} =} g1b (@var{x})
 ##
 ## @seealso{}
 ## @end deftypefn
 
 ## Author: Yudhistira Erlandinata <yerlandinata@yerlandinata-ideapad700>
-## Created: 2018-04-29
+## Created: 2018-05-07
 
-function [a] = backtrack_armijo (f, a_init, x, p, b, t, g)
-  tol = 1e-12;
-  a = a_init;
-  gt = g';
-  printf("a = %.6e; f(x + ap) = %.6e > f(x) + ab g^T p = %.6e\n", a, f(x + a * p), f(x) + (a * b * (gt * p)) );
-  while f(x + a * p) > f(x) + (a * b * (gt * p))
-    a = t * a;
-    printf("a = %.6e; f(x + ap) = %.6e > f(x) + ab g^T p = %.6e\n", a, f(x + a * p), f(x) + (a * b * (gt * p)) );
-    if a < tol
-      return
-    endif
-  endwhile
+function [g] = g1b (x)
+  r = x(1); t = x(2); lambda = x(3);
+  g = [
+    4*pi*r + 2*pi*t + 2*lambda*pi*r*t;
+    2*pi*r + lambda*pi*r*r;
+    pi*r*r*t - 400
+  ];
 endfunction

@@ -26,18 +26,19 @@ function [x, iter_count] = quasi (f, g, x_init, line_search, b_update, tol)
   iter_count = 0;
   B = eye(size(x_init)(1));
   x = x_init;
-  gk = g(x);
-  while f(x) > tol
+  gk = g(x)
+  fx = f(x)
+  while norm(gk) > tol
     iter_count = iter_count + 1;
-    fx = f(x);
-    p = -B * gk;
-    a = line_search(f, x, gk, p);
+    p = -B * gk
+    a = line_search(f, x, gk, p)
     x1 = x + a * p;
     dx = x1 - x;
     gk1 = g(x1);
     dg = gk1 - gk;
-    B = b_update(B, dx, dg);
-    x = x1;
-    gk = gk1;
+    B = b_update(B, dx, dg)
+    x = x1
+    gk = gk1
+    fx = f(x)
   endwhile
 endfunction
