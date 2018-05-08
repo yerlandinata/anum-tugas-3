@@ -22,23 +22,33 @@
 ## Author: Yudhistira Erlandinata <yerlandinata@yerlandinata-ideapad700>
 ## Created: 2018-04-29
 
-function [x, iter_count] = quasi (f, g, x_init, line_search, b_update, tol)
+function [x, iter_count, normg] = quasi (f, g, x_init, line_search, b_update, tol)
   iter_count = 0;
   B = eye(size(x_init)(1));
   x = x_init;
-  gk = g(x)
-  fx = f(x)
-  while norm(gk) > tol
+  gk = g(x);
+  fx = f(x);
+  normg = norm(gk);
+  converg = [1:8]';
+  c = 0;
+  while !convergence_check(converg, tol) &&  normg > tol
     iter_count = iter_count + 1;
-    p = -B * gk
-    a = line_search(f, x, gk, p)
+    c = c + 1;
+    if c > 8
+      c = 1;
+    endif
+    converg(c) = normg;
+    p = -B * gk;
+    a = line_search(f, x, gk, p);
     x1 = x + a * p;
     dx = x1 - x;
     gk1 = g(x1);
     dg = gk1 - gk;
-    B = b_update(B, dx, dg)
-    x = x1
-    gk = gk1
-    fx = f(x)
+    B = b_update(B, dx, dg);
+    x = x1;
+    gk = gk1;
+    normg = norm(gk);
+    printf("norm g = %.11f\n", normg);
+    fx = f(x);
   endwhile
 endfunction
