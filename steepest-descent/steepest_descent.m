@@ -22,11 +22,21 @@
 ## Author: Aldi Hilman Ramadhani <sangbijaksana@UGEAR>
 ## Created: 2018-04-29
 
-function [a] = direct_line_search (f, x_init, g)
-  p = -g;
-  a = 1;
-  while f(x_init + a * p) > f (x_init)
-    a = t * a;
+
+function [x, iter_count] = steepest_descent (f, g, x_init, line_search, tol)
+
+  iter_count = 0;
+  x = x_init;
+
+  while f(x) > tol
+    iter_count = iter_count + 1;
+    p = -g(x);
+
+    f_alfa = @(alfa)f(x+alfa*p);
+    iter_count = iter_count + 1;
+
+    min_alfa = line_search(f_alfa,1);
+    x = x+min_alfa*p;
   endwhile
 
 endfunction
