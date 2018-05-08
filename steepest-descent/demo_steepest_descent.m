@@ -1,6 +1,6 @@
 1;
 
-function demo_steepest_descent(f, g, x_init, tol, func_desc, fid)
+function demo_steepest_descent_method(f, g, x_init, tol, func_desc, fid)
 
   fprintf(fid, func_desc);
   start = time;
@@ -22,25 +22,25 @@ endfunction
 
 fid = fopen ("output.txt", "w");
 for t = [-4 -6 -8 -10 -12]
-  demo_steepest_descent(@f1a, @g1a, [1, 2]', t,
+  demo_steepest_descent_method(@f1a, @g1a, [1, 2]', t,
   "Soal 1a)\tTitik x yang merupakan titik optimum f(x, y) = 0.5 x^2 + 2.5 y^2\n", fid);
 
-  demo_steepest_descent(@f1b, @g1b, [1, 2, -0.5]', t,
+  demo_steepest_descent_method(@f1b, @g1b, [1, 2, -0.5]', t,
   "Soal 1b)\tLuas permukaan tabung minimum dengan syarat volumenya 400 satuan isi\n", fid);
 
-  demo_steepest_descent(@f1c, @g1c, f1c_domain(1), t,
+  demo_steepest_descent_method(@f1c, @g1c, f1c_domain(1), t,
   "Soal 1c)\tGriewank Function n = 8^1\n", fid);
 
-  demo_steepest_descent(@f1c, @g1c, f1c_domain(2), t,
+  demo_steepest_descent_method(@f1c, @g1c, f1c_domain(2), t,
   "Soal 1c)\tGriewank Function n = 8^2\n", fid);
 
-  demo_steepest_descent(@f1c, @g1c, f1c_domain(3), t,
+  demo_steepest_descent_method(@f1c, @g1c, f1c_domain(3), t,
   "Soal 1c)\tGriewank Function n = 8^3\n", fid);
 
-  demo_steepest_descent(@f1c, @g1c, f1c_domain(4), t,
+  demo_steepest_descent_method(@f1c, @g1c, f1c_domain(4), t,
   "Soal 1c)\tGriewank Function n = 8^4\n", fid);
 
-  demo_steepest_descent(@f1c, @g1c, f1c_domain(5), t,
+  demo_steepest_descent_method(@f1c, @g1c, f1c_domain(5), t,
   "Soal 1c)\tGriewank Function n = 8^5\n", fid);
 
 endfor

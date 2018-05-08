@@ -28,12 +28,11 @@ function [x, iter_count] = steepest_descent (f, g, x_init, line_search, tol)
   iter_count = 0;
   x = x_init;
 
-  while g(x) > tol
+  while abs(g(x)) > tol
     iter_count = iter_count + 1;
     p = -g(x);
 
     f_alfa = @(alfa)f(x+alfa*p);
-    iter_count = iter_count + 1;
 
     min_alfa = line_search(f_alfa);
     x = x+min_alfa*p;
