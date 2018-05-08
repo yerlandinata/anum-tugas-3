@@ -22,7 +22,7 @@
 ## Author: Aldi Hilman Ramadhani <sangbijaksana@UGEAR>
 ## Created: 2018-04-29
 
-function [x] = direct_line_search (fun, x_init)
-  x = fminsearch(fun, x_init);
+function [x] = direct_line_search (fun)
+  x = fminsearch(fun, 1);
 
 endfunction
